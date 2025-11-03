@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Edit Task</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Vazifani Tahrirlash</h1>
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="task-name">Vazifa Nomi</label>
+          <input type="text" id="task-name" value="{{task.title}}" name="title" placeholder="Enter task name...">
+          <label for="task-details">Task Detail</label>
+          <input type="text" id="task-details" name="details" {% if task.details %} value="{{ task.details }}" {% else %} placeholder="Mavjud emas!" {% endif %} >
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            {% for status in task.StatusChoices.choices %}
+              <option {% if task.status == status.1 %} selected {% endif %}>{{ status.1 }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline</label>
+          <input type="date" id="deadline" name="deadline" {% if task.deadline %} value="{{ task.deadline }}" {% endif %} >
+        </div>
+        <button type="submit" class="btn">Saqlash</button>
+        <a href="{% url 'home' %}" class="btn cancel" style="text-decoration: none;">Cancel</a>
+      </form>
+    </div>
+  </body>
+</html> 
