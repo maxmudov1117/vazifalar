@@ -52,15 +52,19 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Tizimga Kirish</h1>
+		<h1>Ro'yxatdan o'tish</h1>
 		<form method="post" >
 			{% csrf_token %}
+            <label for="email">Email</label>
+			<input type="text" name="email" id="email" placeholder="Foydalanuvchi nomi ...">
 			<label for="username">Foydalanuvchi nomi:</label>
 			<input type="text" name="username" id="username" placeholder="Foydalanuvchi nomi ...">
 			<label for="password">Parol:</label>
 			<input type="password" name="password" id="password" placeholder="Parol ...">
-			<button>Login</button>
-			<a href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+            <label for="password1">Parol:</label>
+			<input type="password" name="password1" id="password1" placeholder="Parolni tasdiqlash ...">
+			<button>Ro'yxatdan o'tish</button>
+            <a href="{% url 'login' %}">Log in</a>
 		</form>
 	</div>
 </body>
